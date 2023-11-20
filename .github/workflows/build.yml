@@ -18,4 +18,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn -B package
+      uses: coactions/setup-xvfb@v1
+      with:
+        run: mvn -B package
