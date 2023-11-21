@@ -14,6 +14,10 @@
         MyDoggy allows to move, resize or extract those secondary windows. Also, MyDoggy provides support for content
         management of the main window. MyDoggy is a Java docking framework for use in cross-platform Swing applications.
     </description>
+    
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
 
     <developers>
         <developer>
