@@ -116,7 +116,7 @@ public class DockingWithDoggy extends JFrame {
 
         int vCounter = 0;
         while ((vCurrentComponent != mFocusStart) && (vCurrentComponent != null) && (vCounter++ < 20)) {
-            System.out.println("N�chste Komponente: " + vCurrentComponent.getClass() + ", Name: "
+            System.out.println("Nächste Komponente: " + vCurrentComponent.getClass() + ", Name: "
                                + vCurrentComponent.getName());
             vCurrentComponent = vPolicy.getComponentAfter(vContainer, vCurrentComponent);
         }

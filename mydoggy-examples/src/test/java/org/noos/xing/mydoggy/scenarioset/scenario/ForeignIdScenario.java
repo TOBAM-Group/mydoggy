@@ -45,8 +45,8 @@ public class ForeignIdScenario extends AbstractScenario {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(640, 480);
 
-        toolWindowManager.registerToolWindow("Param�tres", "Param�tres", null, new JButton("Param�tres"), ToolWindowAnchor.LEFT);
-        toolWindowManager.registerToolWindow("Vue g̩ometrique", "Vue g̩ometrique", null, new JButton("Vue g̩ometrique"), ToolWindowAnchor.LEFT);
+        toolWindowManager.registerToolWindow("Paramètres", "Paramètres", null, new JButton("Paramètres"), ToolWindowAnchor.LEFT);
+        toolWindowManager.registerToolWindow("Vue g̩éometrique", "Vue g̩éometrique", null, new JButton("Vue g̩éometrique"), ToolWindowAnchor.LEFT);
 
         frame.getContentPane().add(toolWindowManager);
     }
