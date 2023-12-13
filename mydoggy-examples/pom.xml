@@ -36,9 +36,9 @@
         </dependency>
 
         <dependency>
-           <groupId>org.swinglabs</groupId>
-           <artifactId>swingx</artifactId>
-           <version>0.9.1</version>
+           <groupId>org.swinglabs.swingx</groupId>
+           <artifactId>swingx-all</artifactId>
+           <version>1.6.5-1</version>
        </dependency>
 
         <dependency>

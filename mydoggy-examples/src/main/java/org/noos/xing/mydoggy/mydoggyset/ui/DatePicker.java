@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class DatePicker extends JPanel {
 
@@ -15,7 +16,7 @@ public class DatePicker extends JPanel {
 
         add(label, BorderLayout.NORTH);
 
-        final JXDatePicker datePicker = new JXDatePicker(System.currentTimeMillis());
+        final JXDatePicker datePicker = new JXDatePicker(new Date());
         datePicker.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 label.setText(datePicker.getDate().toString());
