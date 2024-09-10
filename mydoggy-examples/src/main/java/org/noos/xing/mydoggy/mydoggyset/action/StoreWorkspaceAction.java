@@ -1,11 +1,13 @@
 package org.noos.xing.mydoggy.mydoggyset.action;
 
-import org.noos.xing.mydoggy.ToolWindowManager;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.io.FileOutputStream;
+
+import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
+
+import org.noos.xing.mydoggy.ToolWindowManager;
 
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
@@ -20,11 +22,10 @@ public class StoreWorkspaceAction extends AbstractAction {
         this.toolWindowManager = toolWindowManager;
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
-        try {
-            FileOutputStream output = new FileOutputStream("workspace.xml");
+        try (FileOutputStream output = new FileOutputStream("workspace.xml")) {
             toolWindowManager.getPersistenceDelegate().save(output);
-            output.close();
             JOptionPane.showMessageDialog(parentComponent, "Workspace saved to 'workspace.xml'.");
         } catch (Exception e1) {
             e1.printStackTrace();

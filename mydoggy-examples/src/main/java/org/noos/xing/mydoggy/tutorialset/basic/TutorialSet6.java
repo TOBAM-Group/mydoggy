@@ -1,11 +1,5 @@
 package org.noos.xing.mydoggy.tutorialset.basic;
 
-import info.clearthought.layout.TableLayout;
-import org.noos.xing.mydoggy.*;
-import org.noos.xing.mydoggy.event.ContentManagerUIEvent;
-import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -14,6 +8,36 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JTree;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import org.noos.xing.mydoggy.Content;
+import org.noos.xing.mydoggy.ContentManager;
+import org.noos.xing.mydoggy.ContentManagerUIListener;
+import org.noos.xing.mydoggy.DockedTypeDescriptor;
+import org.noos.xing.mydoggy.FloatingTypeDescriptor;
+import org.noos.xing.mydoggy.RepresentativeAnchorDescriptor;
+import org.noos.xing.mydoggy.SlidingTypeDescriptor;
+import org.noos.xing.mydoggy.TabbedContentManagerUI;
+import org.noos.xing.mydoggy.TabbedContentUI;
+import org.noos.xing.mydoggy.ToolWindow;
+import org.noos.xing.mydoggy.ToolWindowActionHandler;
+import org.noos.xing.mydoggy.ToolWindowAnchor;
+import org.noos.xing.mydoggy.ToolWindowManager;
+import org.noos.xing.mydoggy.ToolWindowType;
+import org.noos.xing.mydoggy.event.ContentManagerUIEvent;
+import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
+
+import info.clearthought.layout.TableLayout;
+
 public class TutorialSet6 {
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
@@ -21,6 +45,7 @@ public class TutorialSet6 {
 
     protected void run() {
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 setUp();
                 start();
@@ -46,13 +71,14 @@ public class TutorialSet6 {
         this.frame = new JFrame("Sample App...");
         this.frame.setSize(640, 480);
         this.frame.setLocation(100, 100);
-        this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
         // Create a simple JMenuBar
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
                 frame.dispose();
@@ -67,24 +93,22 @@ public class TutorialSet6 {
 
         // Store (on close) and load (on start) the toolwindow manager workspace.
         this.frame.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowOpened(WindowEvent e) {
-                try {
-                    File workspaceFile = new File("workspace.xml");
-                    if (workspaceFile.exists()) {
-                        FileInputStream inputStream = new FileInputStream("workspace.xml");
+                File workspaceFile = new File("workspace.xml");
+                if (workspaceFile.exists()) {
+                    try (FileInputStream inputStream = new FileInputStream("workspace.xml")) {
                         toolWindowManager.getPersistenceDelegate().apply(inputStream);
-                        inputStream.close();
+                    } catch (Exception e1) {
+                        e1.printStackTrace();
                     }
-                } catch (Exception e1) {
-                    e1.printStackTrace();
                 }
             }
 
+            @Override
             public void windowClosing(WindowEvent e) {
-                try {
-                    FileOutputStream output = new FileOutputStream("workspace.xml");
+                try (FileOutputStream output = new FileOutputStream("workspace.xml")) {
                     toolWindowManager.getPersistenceDelegate().save(output);
-                    output.close();
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
@@ -107,8 +131,9 @@ public class TutorialSet6 {
         setupDebugTool();
 
         // Made all tools available
-        for (ToolWindow window : toolWindowManager.getToolWindows())
+        for (ToolWindow window : toolWindowManager.getToolWindows()) {
             window.setAvailable(true);
+        }
 
         initContentManager();
 
@@ -132,11 +157,13 @@ public class TutorialSet6 {
         dockedTypeDescriptor.setPopupMenuEnabled(true);
         JMenu toolsMenu = dockedTypeDescriptor.getToolsMenu();
         toolsMenu.add(new AbstractAction("Hello World!!!") {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(frame, "Hello World!!!");
             }
         });
         dockedTypeDescriptor.setToolWindowActionHandler(new ToolWindowActionHandler() {
+            @Override
             public void onHideButtonClick(ToolWindow toolWindow) {
                 JOptionPane.showMessageDialog(frame, "Hiding...");
                 toolWindow.setVisible(false);
@@ -165,7 +192,7 @@ public class TutorialSet6 {
     }
 
     protected void initContentManager() {
-         JTree treeContent = new JTree();
+        JTree treeContent = new JTree();
 
         ContentManager contentManager = toolWindowManager.getContentManager();
         Content content = contentManager.addContent("Tree Key",
@@ -183,10 +210,12 @@ public class TutorialSet6 {
         contentManagerUI.setShowAlwaysTab(true);
         contentManagerUI.setTabPlacement(TabbedContentManagerUI.TabPlacement.BOTTOM);
         contentManagerUI.addContentManagerUIListener(new ContentManagerUIListener() {
+            @Override
             public boolean contentUIRemoving(ContentManagerUIEvent event) {
                 return JOptionPane.showConfirmDialog(frame, "Are you sure?") == JOptionPane.OK_OPTION;
             }
 
+            @Override
             public void contentUIDetached(ContentManagerUIEvent event) {
                 JOptionPane.showMessageDialog(frame, "Hello World!!!");
             }
