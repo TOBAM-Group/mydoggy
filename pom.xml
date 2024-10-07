@@ -253,9 +253,9 @@
     </reporting>
     
     <distributionManagement>
-        <snapshotRepository>
+        <repository>
             <id>ossrh</id>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
+            <url>https://s01.oss.sonatype.org/content/repositories/releases</url>
+        </repository>
     </distributionManagement>
 </project>
