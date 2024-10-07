@@ -20,7 +20,7 @@ MyDoggy is licensed under the LGPL, please see the LGPL.txt file for more inform
 System Requirements
 ===================
 
-MyDoggy requires JDK5 or higher.
+MyDoggy requires JDK7 or higher.
 
 
 Introduction
@@ -67,7 +67,7 @@ You then should be ready to build MyDoggy.
 Building instructions
 =====================
 
-To build MyDoggy for JDK5 simply call :
+To build MyDoggy for JDK7 simply call :
 
     mvn clean package install
 

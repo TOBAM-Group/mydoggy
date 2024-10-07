@@ -8,7 +8,11 @@
     <packaging>pom</packaging>
     <version>1.5.0</version>
     <name>MyDoggy - My Java Docking Framework</name>
-    <url>http://mydoggy.sourceforge.net</url>
+    <url>https://github.com/TOBAM-Group/mydoggy</url>
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/TOBAM-Group/mydoggy/issues</url>
+    </issueManagement>
     <description>
         MyDoggy is an IntelliJ Idea like docking framework for managing secondary windows within the main window.
         MyDoggy allows to move, resize or extract those secondary windows. Also, MyDoggy provides support for content
@@ -38,7 +42,7 @@
     <licenses>
         <license>
             <name>LGPL - GNU LESSER GENERAL PUBLIC LICENSE</name>
-            <url>http://www.gnu.org/licenses/lgpl.txt</url>
+            <url>https://www.gnu.org/licenses/lgpl.txt</url>
         </license>
     </licenses>
 
@@ -51,10 +55,9 @@
     </modules>
 
     <scm>
-        <connection>scm:svn:https://mydoggy.svn.sourceforge.net/svnroot/mydoggy/mydoggy/trunk</connection>
-        <developerConnection>scm:svn:https://mydoggy.svn.sourceforge.net/svnroot/mydoggy/mydoggy/trunk
-        </developerConnection>
-        <url>http://mydoggy.svn.sourceforge.net/viewvc/mydoggy/mydoggy/trunk/</url>
+        <connection>https://github.com/TOBAM-Group/mydoggy.git</connection>
+        <developerConnection>https://github.com/TOBAM-Group/mydoggy.git</developerConnection>
+        <url>https://github.com/TOBAM-Group/mydoggy.git</url>
     </scm>
 
     <profiles>
