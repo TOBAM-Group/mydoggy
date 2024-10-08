@@ -587,16 +587,6 @@ public class TabbedContentPane extends JTabbedPane implements PropertyChangeList
                 selectionOnPressed = (aggregateIcon.getIndex() == mouseOverTab);
             }
             mouseOverTabWhenPressed = mouseOverTab;
-
-            if (mouseOverTab != -1) {
-                Content newSelected = getContentAt(mouseOverTab);
-                if (newSelected != null && !newSelected.isMaximized()) {
-                    Content oldSelected = toolWindowManager.getContentManager().getSelectedContent();
-                    if (newSelected != oldSelected) {
-                        newSelected.setSelected(true);
-                    }
-                }
-            }
         }
 
         public void mouseClicked(MouseEvent e) {
