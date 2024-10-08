@@ -18,15 +18,11 @@ jobs:
         server-id: ossrh
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
-    - name: Build with Maven
+    - name: Publish package
       uses: coactions/setup-xvfb@v1
       with:
-        run: mvn -B package -Dmaven.test.skip=true
+        run: mvn -B deploy
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: Publish package
-      run: mvn -B deploy -Dmaven.test.skip=true
-      env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
