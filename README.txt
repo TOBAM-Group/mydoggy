@@ -1,4 +1,4 @@
-MyDoggy - My Java Docking Framework 1.5.0 (http://mydoggy.sourceforge.net/)
+MyDoggy - My Java Docking Framework 1.6.0 (http://mydoggy.sourceforge.net/)
 
 CONTENTS
 ========
@@ -36,15 +36,15 @@ Like Eclipse, MyDoggy supports the concept of "prospective" using mydoggy groups
 Directory Structure
 ===================
 
-mydoggy-1.5.0
+mydoggy-1.6.0
     bin                         - Contains scripts for launching mydoggy examples.
     lib                         - Contains mydoggy jars (
-    								mydoggy-api-1.5.0.jar,
-    								mydoggy-plaf-1.5.0.jar,
-    								mydoggy-res-1.5.0.jar,
+    								mydoggy-api-1.6.0.jar,
+    								mydoggy-plaf-1.6.0.jar,
+    								mydoggy-res-1.6.0.jar,
     							    TableLayout-20020517.jar,
-    							    mydoggy-examples-1.5.0.jar,
-    								mydoggy-itest-1.5.0.jar,
+    							    mydoggy-examples-1.6.0.jar,
+    								mydoggy-itest-1.6.0.jar,
     							    junit-3.8.1.jar.
     							    <other libs>
         win32                   - Contains TransparencyManager.dll
