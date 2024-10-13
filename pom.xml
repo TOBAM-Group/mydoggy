@@ -6,7 +6,7 @@
     <groupId>fr.tobam</groupId>
     <artifactId>mydoggy</artifactId>
     <packaging>pom</packaging>
-    <version>1.6.0</version>
+    <version>1.7.0-SNAPSHOT</version>
     <name>MyDoggy - My Java Docking Framework</name>
     <url>https://github.com/TOBAM-Group/mydoggy</url>
     <issueManagement>
