@@ -1,34 +1,45 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.awt.Component;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.noos.xing.mydoggy.Content;
 import org.noos.xing.mydoggy.ContentManager;
 import org.noos.xing.mydoggy.ContentManagerListener;
 import org.noos.xing.mydoggy.ToolWindowManager;
 import org.noos.xing.mydoggy.event.ContentManagerEvent;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestContentManagerListener extends TestCase {
+class TestContentManagerListener {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
-    public void testAddContent() {
+	@Test
+	void testAddContent() {
         ContentManager contentManager = toolWindowManager.getContentManager();
 
         TestCMListener listener = new TestCMListener();
@@ -42,7 +53,8 @@ public class TestContentManagerListener extends TestCase {
         assertEquals(content, listener.getLastEvent().getContent());
     }
 
-    public void testRemoveContent() {
+	@Test
+	void testRemoveContent() {
         ContentManager contentManager = toolWindowManager.getContentManager();
 
         TestCMListener listener = new TestCMListener();
@@ -65,17 +77,20 @@ public class TestContentManagerListener extends TestCase {
         private ContentManagerEvent lastEvent;
 
 
-        public void contentAdded(ContentManagerEvent event) {
+        @Override
+		public void contentAdded(ContentManagerEvent event) {
             this.contentAdded = true;
             this.lastEvent = event;
         }
 
-        public void contentRemoved(ContentManagerEvent event) {
+        @Override
+		public void contentRemoved(ContentManagerEvent event) {
             this.contentRemoved = true;
             this.lastEvent = event;
         }
 
-        public void contentSelected(ContentManagerEvent event) {
+        @Override
+		public void contentSelected(ContentManagerEvent event) {
             this.contentSelected = true;
             this.lastEvent = event;
         }

@@ -1,36 +1,47 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.awt.Component;
+
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.noos.xing.mydoggy.FloatingTypeDescriptor;
 import org.noos.xing.mydoggy.ToolWindowManager;
 import org.noos.xing.mydoggy.ToolWindowType;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestFloatingTypeDescriptor extends TestCase {
+class TestFloatingTypeDescriptor {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
-    public void testFloatingTypeDescriptor() {
+	@Test
+	void testFloatingTypeDescriptor() {
         assertNotNull(toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING));
     }
 
-    public void testFloatingTypeDescriptorLocation() {
+	@Test
+	void testFloatingTypeDescriptorLocation() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setLocation(10,20);
 
@@ -39,7 +50,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(20, descriptor.getLocation().y);
     }
 
-    public void testFloatingTypeDescriptorModal() {
+	@Test
+	void testFloatingTypeDescriptorModal() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setModal(true);
 
@@ -53,7 +65,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(false, descriptor.isModal());
     }
 
-    public void testFloatingTypeDescriptorSize() {
+	@Test
+	void testFloatingTypeDescriptorSize() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setSize(100,200);
 
@@ -62,7 +75,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(200, descriptor.getSize().height);
     }
 
-    public void testFloatingTypeDescriptorTransparentDelay() {
+	@Test
+	void testFloatingTypeDescriptorTransparentDelay() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setTransparentDelay(1000);
 
@@ -70,7 +84,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(1000, descriptor.getTransparentDelay());
     }
 
-    public void testFloatingTypeDescriptorTransparentMode() {
+	@Test
+	void testFloatingTypeDescriptorTransparentMode() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setTransparentMode(false);
 
@@ -84,7 +99,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(true, descriptor.isTransparentMode());
     }
 
-    public void testFloatingTypeDescriptorTransparentRatio() {
+	@Test
+	void testFloatingTypeDescriptorTransparentRatio() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         descriptor.setTransparentRatio(0.5f);
 
@@ -92,7 +108,8 @@ public class TestFloatingTypeDescriptor extends TestCase {
         assertEquals(0.5f, descriptor.getTransparentRatio());
     }
 
-    public void testFloatingTypeDescriptorTransparentRatioUnuseCase() {
+	@Test
+	void testFloatingTypeDescriptorTransparentRatioUnuseCase() {
         FloatingTypeDescriptor descriptor = (FloatingTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING);
         try {
             descriptor.setTransparentRatio(1.5f);

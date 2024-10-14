@@ -1,31 +1,45 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
-import org.noos.xing.mydoggy.*;
-import org.noos.xing.mydoggy.event.ToolWindowManagerEvent;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.noos.xing.mydoggy.ToolWindow;
+import org.noos.xing.mydoggy.ToolWindowAnchor;
+import org.noos.xing.mydoggy.ToolWindowGroup;
+import org.noos.xing.mydoggy.ToolWindowManager;
+import org.noos.xing.mydoggy.ToolWindowManagerListener;
+import org.noos.xing.mydoggy.event.ToolWindowManagerEvent;
 
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestTWManagerListener extends TestCase {
-
+public class TestTWManagerListener {
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
-    public void testRegisterToolWindow() {
+	@Test
+	void testRegisterToolWindow() {
         TestToolWindowManagerListener listener = new TestToolWindowManagerListener();
         toolWindowManager.addToolWindowManagerListener(listener);
 
@@ -39,7 +53,8 @@ public class TestTWManagerListener extends TestCase {
         assertEquals(tool, listener.getLastEvent().getToolWindow());
     }
 
-    public void testUnregisterToolWindow() {
+	@Test
+	void testUnregisterToolWindow() {
         TestToolWindowManagerListener listener = new TestToolWindowManagerListener();
         toolWindowManager.addToolWindowManagerListener(listener);
         ToolWindow tool = toolWindowManager.registerToolWindow(
@@ -54,7 +69,8 @@ public class TestTWManagerListener extends TestCase {
         assertEquals(tool, listener.getLastEvent().getToolWindow());
     }
 
-    public void testUnregisterAllToolWindow() {
+	@Test
+	void testUnregisterAllToolWindow() {
         TestToolWindowManagerListener listener = new TestToolWindowManagerListener();
         toolWindowManager.addToolWindowManagerListener(listener);
         ToolWindow tool = toolWindowManager.registerToolWindow(
@@ -69,7 +85,8 @@ public class TestTWManagerListener extends TestCase {
         assertEquals(tool, listener.getLastEvent().getToolWindow());
     }
 
-    public void testAddToolWindowGroup() {
+	@Test
+	void testAddToolWindowGroup() {
         TestToolWindowManagerListener listener = new TestToolWindowManagerListener();
         toolWindowManager.addToolWindowManagerListener(listener);
 
@@ -81,7 +98,8 @@ public class TestTWManagerListener extends TestCase {
         assertEquals(group, listener.getLastEvent().getToolWindowGroup());
     }
 
-    public void testRemoveToolWindowGroup() {
+	@Test
+	void testRemoveToolWindowGroup() {
         TestToolWindowManagerListener listener = new TestToolWindowManagerListener();
         toolWindowManager.addToolWindowManagerListener(listener);
 
@@ -102,22 +120,26 @@ public class TestTWManagerListener extends TestCase {
 
         private ToolWindowManagerEvent lastEvent;
 
-        public void toolWindowRegistered(ToolWindowManagerEvent event) {
+        @Override
+		public void toolWindowRegistered(ToolWindowManagerEvent event) {
             this.windowRegistered = true;
             this.lastEvent = event;
         }
 
-        public void toolWindowUnregistered(ToolWindowManagerEvent event) {
+        @Override
+		public void toolWindowUnregistered(ToolWindowManagerEvent event) {
             this.windowUnregistered = true;
             this.lastEvent = event;
         }
 
-        public void toolWindowGroupAdded(ToolWindowManagerEvent event) {
+        @Override
+		public void toolWindowGroupAdded(ToolWindowManagerEvent event) {
             this.windowGroupAdded = true;
             this.lastEvent = event;
         }
 
-        public void toolWindowGroupRemoved(ToolWindowManagerEvent event) {
+        @Override
+		public void toolWindowGroupRemoved(ToolWindowManagerEvent event) {
             this.windowGroupRemoved = true;
             this.lastEvent = event;
         }

@@ -1,34 +1,49 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
-import org.noos.xing.mydoggy.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.noos.xing.mydoggy.DockedTypeDescriptor;
+import org.noos.xing.mydoggy.ToolWindow;
+import org.noos.xing.mydoggy.ToolWindowAnchor;
+import org.noos.xing.mydoggy.ToolWindowManager;
+import org.noos.xing.mydoggy.ToolWindowType;
 
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestDockedTypeDescriptor extends TestCase {
+class TestDockedTypeDescriptor {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
-    public void testDockedTypeDescriptor() {
+	@Test
+	void testDockedTypeDescriptor() {
         assertNotNull(toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED));
     }
 
-    public void testDockedTypeDescriptorDockLength() {
+	@Test
+	void testDockedTypeDescriptorDockLength() {
         DockedTypeDescriptor descriptor = (DockedTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED);
         descriptor.setDockLength(150);
 
@@ -36,7 +51,8 @@ public class TestDockedTypeDescriptor extends TestCase {
         assertEquals(150, descriptor.getDockLength());
     }
 
-    public void testDockedTypeDescriptorPopupMenuEnabled() {
+	@Test
+	void testDockedTypeDescriptorPopupMenuEnabled() {
         DockedTypeDescriptor descriptor = (DockedTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED);
         descriptor.setPopupMenuEnabled(false);
 
@@ -50,13 +66,15 @@ public class TestDockedTypeDescriptor extends TestCase {
         assertEquals(true, descriptor.isPopupMenuEnabled());
     }
 
-    public void testDockedTypeDescriptorUserDefinedMenu() {
+	@Test
+	void testDockedTypeDescriptorUserDefinedMenu() {
         DockedTypeDescriptor descriptor = (DockedTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED);
         assertNotNull(descriptor.getToolsMenu());
     }
 
 
-    public void testTWDockedTypeDescriptorDockLength() {
+	@Test
+	void testTWDockedTypeDescriptorDockLength() {
         DockedTypeDescriptor descriptor = (DockedTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED);
         descriptor.setDockLength(150);
 
@@ -74,7 +92,8 @@ public class TestDockedTypeDescriptor extends TestCase {
         assertEquals(250, descriptor.getDockLength());
     }
 
-    public void testTWDockedTypeDescriptorPopupMenuEnabled() {
+	@Test
+	void testTWDockedTypeDescriptorPopupMenuEnabled() {
         DockedTypeDescriptor descriptor = (DockedTypeDescriptor) toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.DOCKED);
         descriptor.setPopupMenuEnabled(false);
 
