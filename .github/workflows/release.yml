@@ -26,3 +26,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+    - name: Release Upload Assets
+      uses: jaywcjlove/github-action-upload-assets@main
+      if: steps.publish_package.outcome == 'success'
+      with:
+        asset-path: '["./mydoggy-api/target/*.jar", "./mydoggy-examples/target/*.jar", "./mydoggy-plaf/target/*.jar", "./mydoggy-res/target/*.jar", "./mydoggy-site-skin/target/*.jar"]'
