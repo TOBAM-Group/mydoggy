@@ -8,7 +8,6 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mydoggy-examples</artifactId>
-    <version>1.7.0-SNAPSHOT</version>
     <name>MyDoggy - My Java Docking Framework - Examples</name>
     <url>http://mydoggy.sourceforge.net</url>
     <description>MyDoggy-Examples contains some examples to see MyDoggy in action.</description>
@@ -42,9 +41,15 @@
        </dependency>
 
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit5.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit5.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -59,6 +64,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
+                <version>3.4.1</version>			
                 <configuration>
                     <archive>
                         <manifest>

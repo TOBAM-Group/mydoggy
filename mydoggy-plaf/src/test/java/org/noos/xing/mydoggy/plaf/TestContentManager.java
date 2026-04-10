@@ -1,12 +1,11 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
-import org.noos.xing.mydoggy.Content;
-import org.noos.xing.mydoggy.ContentManager;
-import org.noos.xing.mydoggy.ToolWindowManager;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
@@ -14,14 +13,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.noos.xing.mydoggy.Content;
+import org.noos.xing.mydoggy.ContentManager;
+import org.noos.xing.mydoggy.ToolWindowManager;
+
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestContentManager extends TestCase {
+public class TestContentManager {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
@@ -36,6 +45,7 @@ public class TestContentManager extends TestCase {
         assertNotNull(toolWindowManager.getContentManager());
     }
 
+	@Test
     public void testAddContentOne() {
         ContentManager contentManager = toolWindowManager.getContentManager();
         Content content = contentManager.addContent("key", "title", null, new JButton("Hello World!!!"));
@@ -58,6 +68,7 @@ public class TestContentManager extends TestCase {
         assertTrue(content.getComponent() instanceof JButton);
     }
 
+	@Test
     public void testAddContentTwo() {
         ContentManager contentManager = toolWindowManager.getContentManager();
         Content content = contentManager.addContent("key", "title", null, new JButton("Hello World!!!"), "tip");
@@ -73,6 +84,7 @@ public class TestContentManager extends TestCase {
         assertTrue(content.getComponent() instanceof JButton);
     }
 
+	@Test
     public void testAlias() {
         ContentManager contentManager = toolWindowManager.getContentManager();
         Content content = contentManager.addContent("key", "title", null, new JButton("Hello World!!!"), "tip");
@@ -94,11 +106,12 @@ public class TestContentManager extends TestCase {
     }
 
 
+	@Test
     public void test1() {
         ContentManager contentManager = toolWindowManager.getContentManager();
 
         Content ctn1 = contentManager.addContent("ctn1", "ctn1", null, new JButton("ctn1"));
-        PropertyChangeListenerTracer ctn1Tracer = new PropertyChangeListenerTracer();        
+        PropertyChangeListenerTracer ctn1Tracer = new PropertyChangeListenerTracer();
         ctn1.addPropertyChangeListener(ctn1Tracer);
 
         Content ctn2 = contentManager.addContent("ctn2", "ctn2", null, new JButton("ctn2"));
@@ -118,17 +131,18 @@ public class TestContentManager extends TestCase {
         protected Map<String, List<PropertyChangeEvent>> eventMap;
 
         public PropertyChangeListenerTracer() {
-            eventMap = new HashMap<String, List<PropertyChangeEvent>>();
+            eventMap = new HashMap<>();
         }
 
-        public void propertyChange(PropertyChangeEvent evt) {
+        @Override
+		public void propertyChange(PropertyChangeEvent evt) {
             String propertyName = evt.getPropertyName();
             List<PropertyChangeEvent> events = eventMap.get(propertyName);
             if (events == null) {
-                events = new ArrayList<PropertyChangeEvent>();
+                events = new ArrayList<>();
                 eventMap.put(propertyName, events);
             }
-            events.add(evt);            
+            events.add(evt);
         }
     }
 }

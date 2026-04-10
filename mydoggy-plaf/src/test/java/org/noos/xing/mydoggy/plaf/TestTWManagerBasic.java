@@ -1,35 +1,46 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.awt.Component;
+
+import javax.swing.JFrame;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.noos.xing.mydoggy.ToolWindowAnchor;
 import org.noos.xing.mydoggy.ToolWindowManager;
 import org.noos.xing.mydoggy.ToolWindowType;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestTWManagerBasic extends TestCase {
+public class TestTWManagerBasic {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
+	@Test
     public void testGetInstance() {
         assertNotNull(toolWindowManager);
     }
 
+	@Test
     public void testToolWindowMethods() {
         // getActiveToolWindowId
         assertNull(toolWindowManager.getActiveToolWindowId());
@@ -68,6 +79,7 @@ public class TestTWManagerBasic extends TestCase {
         assertNull(toolWindowManager.getToolWindow(null));
     }
 
+	@Test
     public void testToolWindowGroupMethods() {
         // getToolWindowGroups
         assertNotNull(toolWindowManager.getToolWindowGroups());
@@ -77,6 +89,7 @@ public class TestTWManagerBasic extends TestCase {
         assertNotNull(toolWindowManager.getToolWindowGroup("group"));
     }
 
+	@Test
     public void testToolWindowTypeDescriptor() {
         assertNotNull(toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING));
         assertNotNull(toolWindowManager.getTypeDescriptorTemplate(ToolWindowType.FLOATING_FREE));

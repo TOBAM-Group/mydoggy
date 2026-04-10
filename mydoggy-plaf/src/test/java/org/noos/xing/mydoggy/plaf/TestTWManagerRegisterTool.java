@@ -1,31 +1,43 @@
 package org.noos.xing.mydoggy.plaf;
 
-import junit.framework.TestCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.awt.Component;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.noos.xing.mydoggy.ToolWindow;
 import org.noos.xing.mydoggy.ToolWindowAnchor;
 import org.noos.xing.mydoggy.ToolWindowManager;
 
-import javax.swing.*;
-import java.awt.*;
-
 /**
  * @author Angelo De Caro (angelo.decaro@gmail.com)
  */
-public class TestTWManagerRegisterTool extends TestCase {
+public class TestTWManagerRegisterTool {
 
     private JFrame frame;
     private ToolWindowManager toolWindowManager;
 
+	@BeforeEach
     protected void setUp() throws Exception {
         frame = new JFrame("test");
         toolWindowManager = new MyDoggyToolWindowManager();
         frame.add((Component) toolWindowManager);
     }
 
+	@AfterEach
     protected void tearDown() throws Exception {
         frame.dispose();
     }
 
+	@Test
     public void testRegisterToolWindow() {
 
         ToolWindow toolWindow = toolWindowManager.registerToolWindow(
@@ -45,6 +57,7 @@ public class TestTWManagerRegisterTool extends TestCase {
     /**
      * We try to register a tool window with a null id.
      */
+	@Test
     public void testRegisterToolWindowUnuseCaseOne() {
         try {
             ToolWindow toolWindow = toolWindowManager.registerToolWindow(
@@ -58,6 +71,7 @@ public class TestTWManagerRegisterTool extends TestCase {
     /**
      * We try to register a tool window with a null compoennt.
      */
+	@Test
     public void testRegisterToolWindowUnuseCaseTwo() {
         try {
             ToolWindow toolWindow = toolWindowManager.registerToolWindow(
