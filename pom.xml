@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
          <!-- SonarCloud Configuration -->
         <sonar.organization>tobam-group</sonar.organization>
+        <sonar.projectKey>TOBAM-Group_mydoggy</sonar.projectKey>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <junit5.version>5.11.2</junit5.version>
     </properties>
