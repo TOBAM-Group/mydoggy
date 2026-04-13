@@ -24,5 +24,4 @@ jobs:
       with:
         run: mvn -B package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
