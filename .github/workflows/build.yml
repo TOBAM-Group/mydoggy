@@ -22,6 +22,6 @@ jobs:
     - name: Build with Maven
       uses: coactions/setup-xvfb@v1
       with:
-        run: mvn -B -e package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage
+        run: mvn -B -e -X package org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Pcoverage
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
