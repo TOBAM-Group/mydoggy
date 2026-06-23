@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.plaf.UIResource;
-import java.applet.Applet;
 import java.awt.*;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureRecognizer;
@@ -371,8 +370,6 @@ public class SwingUtil {
         for (Container p = c.getParent(); p != null; p = p.getParent()) {
             if (p instanceof Window) {
                 return p;
-            } else if (p instanceof Applet) {
-                return p;
             }
         }
         return null;
@@ -435,8 +432,7 @@ public class SwingUtil {
             if (c instanceof JComponent) {
                 x = c.getX();
                 y = c.getY();
-            } else if (c instanceof java.applet.Applet ||
-                    c instanceof java.awt.Window) {
+            } else if (c instanceof java.awt.Window) {
                 try {
                     Point pp = c.getLocationOnScreen();
                     x = pp.x;
@@ -453,7 +449,7 @@ public class SwingUtil {
             p.x += x;
             p.y += y;
 
-            if (c instanceof java.awt.Window || c instanceof java.applet.Applet)
+            if (c instanceof java.awt.Window)
                 break;
             c = c.getParent();
         } while (c != null);
@@ -718,16 +714,6 @@ public class SwingUtil {
             if (c instanceof JComponent) {
                 x = c.getX();
                 y = c.getY();
-            } else if (c instanceof java.applet.Applet ||
-                    c instanceof java.awt.Window) {
-                try {
-                    Point pp = c.getLocationOnScreen();
-                    x = pp.x;
-                    y = pp.y;
-                } catch (IllegalComponentStateException icse) {
-                    x = c.getX();
-                    y = c.getY();
-                }
             } else {
                 x = c.getX();
                 y = c.getY();
@@ -736,7 +722,7 @@ public class SwingUtil {
             p.x -= x;
             p.y -= y;
 
-            if (c instanceof java.awt.Window || c instanceof java.applet.Applet)
+            if (c instanceof java.awt.Window)
                 break;
             c = c.getParent();
         } while (c != null);
@@ -750,8 +736,7 @@ public class SwingUtil {
             if (c instanceof JComponent) {
                 x = c.getX();
                 y = c.getY();
-            } else if (c instanceof java.applet.Applet ||
-                    c instanceof java.awt.Window) {
+            } else if (c instanceof java.awt.Window) {
                 try {
                     Point pp = c.getLocationOnScreen();
                     x = pp.x;
@@ -777,7 +762,7 @@ public class SwingUtil {
             p.x -= x;
             p.y -= y;
 
-            if (c instanceof java.awt.Window || c instanceof java.applet.Applet)
+            if (c instanceof java.awt.Window)
                 break;
             c = c.getParent();
         } while (c != null);
